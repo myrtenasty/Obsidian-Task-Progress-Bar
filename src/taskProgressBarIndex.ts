@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { App, Editor, Plugin, PluginSettingTab, Setting } from 'obsidian';
 import { taskProgressBarExtension } from './widget';
 import { updateProgressBarInElement } from "./readModeWidget";

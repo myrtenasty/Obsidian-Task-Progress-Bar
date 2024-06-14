@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import TaskProgressBarPlugin from "./taskProgressBarIndex";
 import { Component, MarkdownPostProcessorContext } from "obsidian";
 

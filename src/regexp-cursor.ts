@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable prefer-const */
 // from https://github.com/codemirror/search/blob/main/src/regexp.ts
 
 // @ts-ignore

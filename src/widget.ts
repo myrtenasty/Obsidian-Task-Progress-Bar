@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	Decoration,
 	DecorationSet,
@@ -306,7 +309,7 @@ export function taskProgressBarExtension(app: App, plugin: TaskProgressBarPlugin
 					}
 				}
 				return {completed: completed, total: total};
-			};
+			}
 		},
 		{
 			provide: plugin => [
