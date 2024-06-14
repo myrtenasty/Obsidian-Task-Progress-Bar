@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	Decoration,
 	DecorationSet,
@@ -136,13 +138,13 @@ export function taskProgressBarExtension(app: App, plugin: TaskProgressBarPlugin
 
 			constructor(public view: EditorView) {
 
-				let {progress} = this.getDeco(view);
+				const {progress} = this.getDeco(view);
 				this.progressDecorations = progress;
 			}
 
 			update(update: ViewUpdate) {
 				if (update.docChanged || update.viewportChanged) {
-					let {progress} = this.getDeco(update.view);
+					const {progress} = this.getDeco(update.view);
 					this.progressDecorations = progress;
 				}
 			}
@@ -150,10 +152,10 @@ export function taskProgressBarExtension(app: App, plugin: TaskProgressBarPlugin
 			getDeco(view: EditorView): {
 				progress: DecorationSet;
 			} {
-				let {state} = view,
+				const {state} = view,
 					// @ts-ignore
 					progressDecos: Range<Decoration>[] = [];
-				for (let part of view.visibleRanges) {
+				for (const part of view.visibleRanges) {
 					let taskBulletCursor: RegExpCursor | SearchCursor;
 					let headingCursor: RegExpCursor | SearchCursor;
 					try {
@@ -171,7 +173,7 @@ export function taskProgressBarExtension(app: App, plugin: TaskProgressBarPlugin
 						}
 						// Showing task progress bar near heading items.
 						while (!headingCursor.next().done) {
-							let {from, to} = headingCursor.value;
+							const {from, to} = headingCursor.value;
 							const headingLine = this.view.state.doc.lineAt(from);
 							// @ts-ignore
 							const range = this.calculateRangeForTransform(this.view.state, headingLine.from);
@@ -192,18 +194,18 @@ export function taskProgressBarExtension(app: App, plugin: TaskProgressBarPlugin
 								tasksNum = this.calculateTasksNum(this.view.state.doc.slice(range.from, range.to).text, false);
 							}
 							if (tasksNum?.total === 0) continue;
-							let startDeco = Decoration.widget({widget: new TaskProgressBarWidget(app, plugin, view, headingLine.to, headingLine.to, tasksNum.completed, tasksNum.total)});
+							const startDeco = Decoration.widget({widget: new TaskProgressBarWidget(app, plugin, view, headingLine.to, headingLine.to, tasksNum.completed, tasksNum.total)});
 							progressDecos.push(startDeco.range(headingLine.to, headingLine.to));
 						}
 					}
 					// Showing task progress bar near bullet items.
 					while (!taskBulletCursor.next().done) {
-						let {from} = taskBulletCursor.value;
+						const {from} = taskBulletCursor.value;
 						const linePos = view.state.doc.lineAt(from)?.from;
 
 						// Don't parse any tasks in code blocks or frontmatter
 						// @ts-ignore
-						let syntaxNode = syntaxTree(view.state).resolveInner(linePos + 1),
+						const syntaxNode = syntaxTree(view.state).resolveInner(linePos + 1),
 							// @ts-ignore
 							nodeProps: string = syntaxNode.type.prop(tokenClassNodeProp),
 							excludedSection = ["hmd-codeblock", "hmd-frontmatter"].find(token =>
@@ -235,7 +237,7 @@ export function taskProgressBarExtension(app: App, plugin: TaskProgressBarPlugin
 							tasksNum = this.calculateTasksNum(this.view.state.doc.slice(range.from, range.to).text, true);
 						}
 						if (tasksNum.total === 0) continue;
-						let startDeco = Decoration.widget({widget: new TaskProgressBarWidget(app, plugin, view, line.to, line.to, tasksNum.completed, tasksNum.total)});
+						const startDeco = Decoration.widget({widget: new TaskProgressBarWidget(app, plugin, view, line.to, line.to, tasksNum.completed, tasksNum.total)});
 						progressDecos.push(startDeco.range(line.to, line.to));
 					}
 				}
@@ -306,7 +308,7 @@ export function taskProgressBarExtension(app: App, plugin: TaskProgressBarPlugin
 					}
 				}
 				return {completed: completed, total: total};
-			};
+			}
 		},
 		{
 			provide: plugin => [

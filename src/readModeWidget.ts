@@ -30,7 +30,7 @@ function groupElementsByParent(childrenElements: HTMLElement[]) {
 }
 
 function loadProgressbar(plugin: TaskProgressBarPlugin, groupedElements: GroupElement[], type: 'dataview' | 'normal') {
-	for (let group of groupedElements) {
+	for (const group of groupedElements) {
 		if (group.parentElement.parentElement && group.parentElement?.parentElement.hasClass('task-list-item')) {
 
 			const progressBar = new ProgressBar(plugin, group, type).onload();
@@ -87,7 +87,7 @@ class ProgressBar extends Component {
 		this.type === 'dataview' && this.updateCompletedAndTotalDataview();
 		this.type === 'normal' && this.updateCompletedAndTotal();
 
-		for (let el of this.group.childrenElement) {
+		for (const el of this.group.childrenElement) {
 			this.type === 'normal' && el.on('click', 'input', () => {
 				setTimeout(() => {
 					this.updateCompletedAndTotal();
