@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { App, Editor, Plugin, PluginSettingTab, Setting } from 'obsidian';
 import { taskProgressBarExtension } from './widget';
 import { updateProgressBarInElement } from "./readModeWidget";
@@ -51,7 +50,6 @@ export default class TaskProgressBarPlugin extends Plugin {
 
 class TaskProgressBarSettingTab extends PluginSettingTab {
 	plugin: TaskProgressBarPlugin;
-	// eslint-disable-next-line @typescript-eslint/no-inferrable-types
 	private applyDebounceTimer: number = 0;
 
 	constructor(app: App, plugin: TaskProgressBarPlugin) {
